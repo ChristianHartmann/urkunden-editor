@@ -15,7 +15,13 @@ async function findeSeite() {
   for (let i = 0; i < 60; i++) {
     try {
       const ziele = await (await fetch(`http://127.0.0.1:${PORT}/json`)).json();
-      const seite = ziele.find((z) => z.type === 'page' && z.webSocketDebuggerUrl);
+      // Im Entwicklungsmodus öffnet die App zusätzlich ein DevTools-Fenster,
+      // das sich ebenfalls als "page" meldet - und zwar nicht zuverlässig nach
+      // der eigentlichen App-Seite. Ohne den Ausschluss verbindet sich dieses
+      // Werkzeug manchmal mit den DevTools statt mit der App.
+      const seite = ziele.find(
+        (z) => z.type === 'page' && z.webSocketDebuggerUrl && !z.url.startsWith('devtools://')
+      );
       if (seite) return seite.webSocketDebuggerUrl;
     } catch (e) {
       /* das Programm startet noch */
