@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <title>Platzhalter für ein Vereinswappen</title>
+  <path d="M100 8 L188 40 V128 C188 180 148 216 100 232 C52 216 12 180 12 128 V40 Z"
+        fill="none" stroke="#8A8578" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M100 28 L168 53 V128 C168 168 138 197 100 211 C62 197 32 168 32 128 V53 Z"
+        fill="#EFECE4"/>
+  <circle cx="100" cy="112" r="34" fill="none" stroke="#B4AE9E" stroke-width="5"/>
+  <path d="M100 92 V132 M80 112 H120" stroke="#B4AE9E" stroke-width="5" stroke-linecap="round"/>
+  <text x="100" y="176" text-anchor="middle" font-family="Georgia, serif"
+        font-size="17" fill="#8A8578">Wappen</text>
+</svg>

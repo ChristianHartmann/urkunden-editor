@@ -1,0 +1,21 @@
+{
+  "id": "hochzeit",
+  "name": "Hochzeit",
+  "description": "Glückwunsch zur Hochzeit eines Brautpaares - mit beiden Namen.",
+  "page": { "width": 794, "height": 1123 },
+  "groups": { "spacing": { "label": "Abstände", "collapsed": true } },
+  "fields": [
+    { "key": "kicker",   "label": "Anrede (oben)",  "type": "text",     "default": "Herzlichen Glückwunsch zur" },
+    { "key": "occasion", "label": "Anlass",         "type": "text",     "default": "Hochzeit" },
+    { "key": "name1",    "label": "Name 1",         "type": "text",     "default": "Name1" },
+    { "key": "name2",    "label": "Name 2",         "type": "text",     "default": "Name2" },
+    { "key": "body",     "label": "Fließtext",      "type": "textarea", "default": "Zu Eurer Vermählung gratulieren wir von ganzem Herzen und wünschen Euch für den gemeinsamen Lebensweg Gesundheit, Glück und ein sicheres Zuhause." },
+    { "key": "closing",  "label": "Schlusszeile",   "type": "text",     "default": "Auf ein Leben voller Liebe und Freude!" },
+
+    { "key": "gapScale",  "label": "Gesamt (kompakt ↔ luftig)", "type": "range", "cssVar": "--gap-scale", "min": 0.6, "max": 1.6, "step": 0.05, "default": 1.4, "group": "spacing" },
+    { "key": "mtHeader",  "label": "Vor der Anrede",     "type": "range", "cssVar": "--mt-header", "unit": "px", "min": 0, "max": 100, "step": 2, "default": 30, "group": "spacing" },
+    { "key": "mtNames",   "label": "Vor den Namen",      "type": "range", "cssVar": "--mt-names",  "unit": "px", "min": 0, "max": 120, "step": 2, "default": 38, "group": "spacing" },
+    { "key": "mtBody",    "label": "Vor dem Fließtext",  "type": "range", "cssVar": "--mt-body",   "unit": "px", "min": 0, "max": 140, "step": 2, "default": 38, "group": "spacing" },
+    { "key": "mtClosing", "label": "Vor der Schlusszeile", "type": "range", "cssVar": "--mt-closing", "unit": "px", "min": 0, "max": 100, "step": 2, "default": 42, "group": "spacing" }
+  ]
+}

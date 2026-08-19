@@ -1,0 +1,21 @@
+{
+  "id": "geburtstag",
+  "name": "Geburtstag",
+  "description": "Glückwunsch zum Geburtstag eines Mitglieds - mit Namen und persönlichem Gruß.",
+  "page": { "width": 794, "height": 1123 },
+  "groups": { "spacing": { "label": "Abstände", "collapsed": true } },
+  "fields": [
+    { "key": "kicker",   "label": "Anrede (oben)",  "type": "text",     "default": "Herzlichen Glückwunsch zum" },
+    { "key": "occasion", "label": "Anlass",         "type": "text",     "default": "60. Geburtstag" },
+    { "key": "roleLine", "label": "Zeile über dem Namen", "type": "text", "default": "unseres Mitglieds" },
+    { "key": "name",     "label": "Name",           "type": "text",     "default": "Vorname Nachname" },
+    { "key": "body",     "label": "Fließtext",      "type": "textarea", "default": "Wir gratulieren von ganzem Herzen und danken für viele Jahre treuer Verbundenheit." },
+    { "key": "closing",  "label": "Schlusszeile",   "type": "text",     "default": "Auf viele weitere gemeinsame Jahre!" },
+
+    { "key": "gapScale",  "label": "Gesamt (kompakt ↔ luftig)", "type": "range", "cssVar": "--gap-scale", "min": 0.6, "max": 1.6, "step": 0.05, "default": 1.5, "group": "spacing" },
+    { "key": "mtHeader",  "label": "Vor der Anrede",     "type": "range", "cssVar": "--mt-header",  "unit": "px", "min": 0, "max": 100, "step": 2, "default": 40, "group": "spacing" },
+    { "key": "mtName",    "label": "Vor dem Namen",      "type": "range", "cssVar": "--mt-name",    "unit": "px", "min": 0, "max": 100, "step": 2, "default": 36, "group": "spacing" },
+    { "key": "mtBody",    "label": "Vor dem Fließtext",  "type": "range", "cssVar": "--mt-body",    "unit": "px", "min": 0, "max": 140, "step": 2, "default": 48, "group": "spacing" },
+    { "key": "mtClosing", "label": "Vor der Schlusszeile", "type": "range", "cssVar": "--mt-closing", "unit": "px", "min": 0, "max": 100, "step": 2, "default": 42, "group": "spacing" }
+  ]
+}

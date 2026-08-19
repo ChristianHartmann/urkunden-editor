@@ -1,0 +1,17 @@
+{
+  "groups": {
+    "signatures": { "label": "Unterschriften", "collapsed": true }
+  },
+  "before": [
+    { "key": "emblem", "label": "Wappen (oben)", "type": "image", "default": "wappen-platzhalter.svg" },
+    { "key": "showEmblem", "label": "Wappen oben anzeigen", "type": "checkbox", "default": true }
+  ],
+  "after": [
+    { "key": "signatureLeft", "label": "Unterschrift links", "type": "text", "default": "Vorsitz", "group": "signatures" },
+    { "key": "signatureRight", "label": "Unterschrift rechts", "type": "text", "default": "Schriftführung", "group": "signatures" },
+    { "key": "background", "label": "Hintergrund", "type": "select", "options": [
+        { "value": "weiss", "label": "Weiß" },
+        { "value": "creme", "label": "Creme" }
+      ], "default": "weiss" }
+  ]
+}

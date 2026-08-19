@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src 'self' data:; font-src data:;" />
+  <title>Urkunden-Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Startbildschirm: Vorlagen + gespeicherte Urkunden -->
+  <div id="view-gallery">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          <div class="brand-title">Urkunden-Editor</div>
+          <div class="brand-sub" id="brand-sub"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="gallery">
+      <section>
+        <h2>Neue Urkunde erstellen</h2>
+        <p class="hint">Wähle eine Vorlage aus. Alle Texte, Bilder und Farben lassen sich danach anpassen.</p>
+        <div id="template-cards" class="cards"></div>
+      </section>
+
+      <section>
+        <h2>Meine Urkunden</h2>
+        <p id="saved-empty" class="hint hidden">Noch keine gespeicherten Urkunden.</p>
+        <div id="saved-list" class="saved"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Editor -->
+  <div id="view-editor" class="hidden">
+    <header class="app-header editor-header">
+      <button id="btn-back" class="btn ghost">‹ Zurück</button>
+      <div class="editor-title-wrap">
+        <span id="editor-template-name" class="pill"></span>
+        <input id="editor-title" class="title-input" placeholder="Titel dieser Urkunde (zum Speichern)" />
+      </div>
+      <div class="editor-actions">
+        <button id="btn-save" class="btn">Speichern</button>
+        <button id="btn-pdf" class="btn primary">Als PDF speichern</button>
+        <button id="btn-print" class="btn">Drucken</button>
+        <button id="btn-serie" class="btn">Serie aus Liste…</button>
+      </div>
+    </header>
+
+    <main class="editor">
+      <aside class="form-panel">
+        <div class="form-toolbar">
+          <button id="btn-undo" class="btn small ghost" title="Letzte Änderung rückgängig (Strg+Z)">↶ Rückgängig</button>
+          <button id="btn-reset" class="btn small ghost" title="Alle Änderungen dieser Sitzung verwerfen">⟲ Zurücksetzen</button>
+        </div>
+        <div id="form"></div>
+      </aside>
+      <section class="preview-panel">
+        <div id="preview-stage"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Serie aus Teilnehmerliste -->
+  <div id="view-serie" class="hidden">
+    <header class="app-header editor-header">
+      <button id="btn-serie-back" class="btn ghost">‹ Zurück</button>
+      <div class="editor-title-wrap">
+        <span class="pill">Serie</span>
+        <span id="serie-vorlage" class="hint"></span>
+      </div>
+    </header>
+
+    <main class="editor">
+      <aside class="form-panel">
+        <div class="serie-schritt">
+          <h3>1. Muster-CSV</h3>
+          <p class="hint">Kopfzeile mit den Feldern dieser Vorlage und eine Beispielzeile mit deinen Werten.</p>
+          <button id="btn-serie-muster" class="btn small">Muster-CSV speichern…</button>
+        </div>
+
+        <div class="serie-schritt">
+          <h3>2. Teilnehmerliste</h3>
+          <button id="btn-serie-csv" class="btn small primary">CSV wählen…</button>
+          <div id="serie-bericht" class="serie-bericht"></div>
+        </div>
+
+        <div id="serie-ausgabe" class="serie-schritt hidden">
+          <h3>3. Erzeugen</h3>
+          <button id="btn-serie-pdf" class="btn small primary">Ein PDF mit allen Urkunden</button>
+          <button id="btn-serie-dateien" class="btn small">Einzeldateien…</button>
+          <button id="btn-serie-druck" class="btn small">Drucken</button>
+          <p class="hint">Dateiname der Einzeldateien aus:</p>
+          <div id="serie-namensspalten" class="serie-spalten"></div>
+        </div>
+
+        <div id="serie-fortschritt" class="serie-schritt hidden">
+          <p id="serie-fortschritt-text" class="hint"></p>
+          <button id="btn-serie-abbrechen" class="btn small ghost">Abbrechen</button>
+        </div>
+      </aside>
+
+      <section class="preview-panel">
+        <div id="serie-vorschau-kopf" class="serie-vorschau-kopf hidden">
+          <button id="btn-serie-erste" class="btn small ghost">Erste Zeile</button>
+          <button id="btn-serie-letzte" class="btn small ghost">Letzte Zeile</button>
+        </div>
+        <div id="serie-stage"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="render.js"></script>
+  <script src="model.js"></script>
+  <script src="form.js"></script>
+  <script src="serie-ui.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>

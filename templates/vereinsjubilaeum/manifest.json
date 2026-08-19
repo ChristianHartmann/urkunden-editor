@@ -1,0 +1,27 @@
+{
+  "id": "vereinsjubilaeum",
+  "name": "Vereinsjubiläum",
+  "description": "Glückwunsch zum Gründungsjubiläum - mit zwei Wappen nebeneinander.",
+  "page": { "width": 794, "height": 1123 },
+  "groups": { "spacing": { "label": "Abstände", "collapsed": true } },
+  "shellDefaults": { "showEmblem": false },
+  "fields": [
+    { "key": "kicker",   "label": "Anrede (oben)",  "type": "text",     "default": "Herzlichen Glückwunsch zum" },
+    { "key": "occasion", "label": "Anlass",         "type": "text",     "default": "Gründungsjubiläum" },
+    { "key": "number",   "label": "Zahl",           "type": "text",     "default": "50" },
+    { "key": "unit",     "label": "Einheit",        "type": "text",     "default": "Jahre" },
+    { "key": "emblemLeft",  "label": "Wappen links",  "type": "image",  "default": "wappen-platzhalter.svg" },
+    { "key": "emblemRight", "label": "Wappen rechts", "type": "image",  "default": "wappen-platzhalter.svg" },
+    { "key": "emblemGap",   "label": "Abstand der Wappen", "type": "range", "styleProp": "gap", "unit": "px", "min": 0, "max": 160, "step": 2, "default": 22 },
+    { "key": "showConnector", "label": "Text zwischen den Wappen anzeigen", "type": "checkbox", "default": true },
+    { "key": "connector",   "label": "Text zwischen den Wappen", "type": "textarea", "default": "in\nFreundschaft" },
+    { "key": "body",     "label": "Fließtext",      "type": "textarea", "default": "Mit Stolz und tiefer Verbundenheit gratulieren wir zu 50 Jahren voller Gemeinschaft und gelebtem Miteinander." },
+    { "key": "closing",  "label": "Schlusszeile",   "type": "text",     "default": "Auf viele weitere Jahre in Freundschaft und Zusammenhalt!" },
+
+    { "key": "gapScale",   "label": "Gesamt (kompakt ↔ luftig)", "type": "range", "cssVar": "--gap-scale", "min": 0.6, "max": 1.6, "step": 0.05, "default": 1, "group": "spacing" },
+    { "key": "mtOccasion", "label": "Nach der Titelzeile", "type": "range", "cssVar": "--mt-occasion", "unit": "px", "min": 0, "max": 100, "step": 2, "default": 32, "group": "spacing" },
+    { "key": "mtEmblems",  "label": "Vor den Wappen",     "type": "range", "cssVar": "--mt-emblems",  "unit": "px", "min": 0, "max": 180, "step": 2, "default": 92, "group": "spacing" },
+    { "key": "mtBody",     "label": "Vor dem Fließtext",  "type": "range", "cssVar": "--mt-body",     "unit": "px", "min": 0, "max": 140, "step": 2, "default": 40, "group": "spacing" },
+    { "key": "mtClosing",  "label": "Vor der Schlusszeile", "type": "range", "cssVar": "--mt-closing", "unit": "px", "min": 0, "max": 100, "step": 2, "default": 30, "group": "spacing" }
+  ]
+}
