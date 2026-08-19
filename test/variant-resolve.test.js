@@ -40,12 +40,12 @@ test('fehlt die Datei in beiden Pfaden, kommt null zurück', () => {
 test('Vorlagen werden erst in der Variante, dann geteilt gesucht', () => {
   const root = makeRoot({
     'templates/geburtstag/template.html': 'GETEILT',
-    'variants/muster/templates/pokalkampf/template.html': 'EIGEN',
+    'variants/muster/templates/einladung/template.html': 'EIGEN',
     'variants/muster/variant.json': MINIMAL_CONFIG,
   });
   const variantDir = path.join(root, 'variants', 'muster');
   const shared = variant.resolveTemplateFile(variantDir, root, 'geburtstag', 'template.html');
-  const own = variant.resolveTemplateFile(variantDir, root, 'pokalkampf', 'template.html');
+  const own = variant.resolveTemplateFile(variantDir, root, 'einladung', 'template.html');
   assert.equal(fs.readFileSync(shared, 'utf8'), 'GETEILT');
   assert.equal(fs.readFileSync(own, 'utf8'), 'EIGEN');
 });

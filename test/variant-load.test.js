@@ -67,6 +67,33 @@ test('eine unbekannte Variante ist ein Fehler beim Start', () => {
   assert.throws(() => loadVariant('gibtsnicht', { rootDir: ROOT, variantPaths: VARIANT_PATHS }), /gibtsnicht/);
 });
 
+test('loadVariant findet eine Variante, die nur im zweiten Suchpfad liegt', () => {
+  // Beide Vereins-Installer übergeben zwei Suchpfade: den eigenen
+  // variants-Ordner zuerst, den des Kerns als Rückfalloption. Bisher
+  // übergab jeder Test genau einen Pfad - eine Regression in der
+  // Mehrpfad-Suche selbst wäre unbemerkt geblieben.
+  const basis = makeRoot({
+    'templates/base.css': '.urkunde { --accent: #000; }',
+    'templates/shell.html': '<div class="urkunde">{{CONTENT}}</div>',
+    'templates/gruss/template.html': '<p data-field="body">x</p>',
+    'templates/gruss/manifest.json': JSON.stringify({
+      id: 'gruss',
+      fields: [{ key: 'body', label: 'Fließtext', type: 'textarea', default: 'Basistext' }],
+    }),
+    'assets/fonts/fonts.css': '@font-face {}',
+  });
+  const leererSuchpfad = makeRoot({});
+  const zweiterSuchpfad = makeRoot({
+    'variants/verein/variant.json': JSON.stringify({ name: 'Verein', templates: ['gruss'] }),
+  });
+  const boot = loadVariant('verein', {
+    rootDir: basis,
+    variantPaths: [path.join(leererSuchpfad, 'variants'), path.join(zweiterSuchpfad, 'variants')],
+  });
+  assert.equal(boot.variant.name, 'Verein');
+  assert.equal(boot.templates[0].manifest.id, 'gruss');
+});
+
 test('die Standard-Variante lädt und erbt alles aus templates/', () => {
   const boot = loadVariant('standard', { rootDir: ROOT, variantPaths: VARIANT_PATHS });
   assert.equal(boot.variant.name, 'Standard');
