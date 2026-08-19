@@ -116,6 +116,9 @@ build/
   builder.<id>.yml   Installer-Metadaten dieser Variante
 assets/
   fonts/fonts.css    lokal eingebettete Schriften (auto-generiert)
+test/       automatisierte Tests (node --test)
+tools/      Hilfsskripte für Entwicklung und Build, z. B. fetch-fonts.mjs
+docs/       Screenshots für dieses README
 ```
 
 ### Eine neue Vorlage hinzufügen

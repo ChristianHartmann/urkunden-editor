@@ -20,15 +20,16 @@ const TEXT_VERZEICHNISSE = [
   'test',
   'tools',
   'build',
+  'docs',
   'assets/emblems',
   'variants/standard',
 ];
 
-// Die Bildprüfung nimmt 'build' mit, obwohl der Textscan es auslässt: dort
-// liegt das App-Icon, das ausdrücklich erlaubt ist und deshalb geprüft werden
-// muss, während die Vereins-YAMLs daneben erst in Task 9 umziehen.
+// 'build' steht in beiden Listen: der Textscan prüft es wie jedes andere
+// Verzeichnis auf Vereinsbegriffe, die Bildprüfung zusätzlich auf
+// Bilddateien - dort liegt das App-Icon, das ausdrücklich erlaubt ist.
 //
-// 'docs' liegen die README-Screenshots - ausschließlich von der Variante
+// In 'docs' liegen die README-Screenshots - ausschließlich von der Variante
 // `standard` und ausdrücklich einzeln unten erlaubt. Ohne den Eintrag hier
 // würde ein später dort abgelegtes Bild (z. B. versehentlich von einer
 // anderen Variante) unbemerkt mitveröffentlicht.

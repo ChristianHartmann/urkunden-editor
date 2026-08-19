@@ -1,6 +1,6 @@
 'use strict';
 
-// Wo eine Variante ihre gespeicherten Urkunden und Wappen ablegt.
+// Wo eine Variante ihre gespeicherten Urkunden ablegt.
 //
 // Electron leitet den userData-Ordner sonst aus dem Feld "name" der
 // package.json ab - und das ist für alle Varianten dasselbe. Zwei Varianten

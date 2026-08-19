@@ -4,7 +4,6 @@ node_modules/
 # Build-Ausgaben (Installer, entpackte App)
 dist/
 
-
 # Logs & Caches
 *.log
 npm-debug.log*

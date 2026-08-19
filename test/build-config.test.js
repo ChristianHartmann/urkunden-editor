@@ -41,8 +41,9 @@ function readYamlValue(yml, key) {
 
 test('appId, productName und Debian-Paketname unterscheiden sich zwischen den Varianten', () => {
   // Grundlage dafür, dass mehrere Varianten parallel installiert sein können,
-  // ohne sich gespeicherte Urkunden zu vermischen (productName bestimmt den
-  // userData-Ordner) oder sich beim Installieren gegenseitig zu verdrängen.
+  // ohne sich beim Installieren gegenseitig zu verdrängen. Gespeicherte
+  // Urkunden vermischen sich dadurch nicht, weil der userData-Ordner an der
+  // Varianten-ID hängt, nicht an productName (siehe src/main/user-data.js).
   const werte = { appId: new Map(), productName: new Map(), 'deb.packageName': new Map() };
   for (const id of VARIANTEN) {
     const yml = fs.readFileSync(path.join(ROOT, 'build', `builder.${id}.yml`), 'utf8');
