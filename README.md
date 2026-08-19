@@ -10,6 +10,16 @@ Vorlagen, eigener Optik und eigenem Installer. Mitgeliefert ist die Variante
 
 Die App funktioniert komplett **offline** (Schriften sind eingebettet).
 
+![Startbildschirm des Urkunden-Editors mit den drei Vorlagenkarten Vereinsjubiläum, Geburtstag und Hochzeit](docs/screenshots/galerie.png)
+
+*Jede Karte startet eine neue Urkunde aus dieser Vorlage; eine eigene Variante kann weitere
+Karten hinzufügen, ohne den Kern anzufassen.*
+
+![Editor-Ansicht: links das ausgefüllte Formular, rechts die Live-Vorschau der Geburtstagsurkunde](docs/screenshots/editor.png)
+
+*Die Vorschau rechts zieht bei jeder Änderung sofort nach - ganz ohne eigenen
+Aktualisieren-Schritt.*
+
 ## Für Anwender: So wird eine Urkunde erstellt
 
 1. App starten.

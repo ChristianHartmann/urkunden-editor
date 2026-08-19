@@ -27,9 +27,15 @@ const TEXT_VERZEICHNISSE = [
 // Die Bildprüfung nimmt 'build' mit, obwohl der Textscan es auslässt: dort
 // liegt das App-Icon, das ausdrücklich erlaubt ist und deshalb geprüft werden
 // muss, während die Vereins-YAMLs daneben erst in Task 9 umziehen.
+//
+// 'docs' liegen die README-Screenshots - ausschließlich von der Variante
+// `standard` und ausdrücklich einzeln unten erlaubt. Ohne den Eintrag hier
+// würde ein später dort abgelegtes Bild (z. B. versehentlich von einer
+// anderen Variante) unbemerkt mitveröffentlicht.
 const BILD_VERZEICHNISSE = [
   'assets/emblems',
   'build',
+  'docs',
   'templates',
   'variants/standard',
 ];
@@ -88,10 +94,15 @@ test('kein Vereinsbegriff steht im Kern', () => {
 
 test('im Kern liegen keine Bilddateien außer den Platzhaltern', () => {
   // Gemeindewappen sind Hoheitszeichen und dürfen nicht veröffentlicht
-  // werden. Erlaubt sind nur das App-Icon und die Platzhalter.
+  // werden. Erlaubt sind nur das App-Icon, die Platzhalter und die
+  // README-Screenshots - einzeln aufgeführt statt 'docs' pauschal freizugeben,
+  // damit ein künftig dort abgelegtes viertes Bild den Test zum Anschlagen
+  // bringt, statt unbemerkt mitveröffentlicht zu werden.
   const erlaubt = new Set([
     path.join('build', 'icon.png'),
     path.join('assets', 'emblems', 'wappen-platzhalter.svg'),
+    path.join('docs', 'screenshots', 'galerie.png'),
+    path.join('docs', 'screenshots', 'editor.png'),
   ]);
   const bilder = dateien(BILD_VERZEICHNISSE).filter(
     (rel) => /\.(png|jpe?g|gif|webp|svg)$/i.test(rel) && !erlaubt.has(rel)
