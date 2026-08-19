@@ -41,10 +41,8 @@ html, body {
 
 .brand { display: flex; align-items: center; gap: 14px; }
 .brand-mark {
-  width: 34px; height: 34px; border-radius: 7px;
-  background: var(--red);
-  border: 2px solid var(--gold);
-  transform: rotate(45deg);
+  width: 48px; height: 48px;
+  object-fit: contain;
   flex: none;
 }
 .brand-title { font-weight: 700; font-size: 18px; letter-spacing: 0.02em; }

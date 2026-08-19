@@ -34,7 +34,7 @@ const TEXT_VERZEICHNISSE = [
 // würde ein später dort abgelegtes Bild (z. B. versehentlich von einer
 // anderen Variante) unbemerkt mitveröffentlicht.
 const BILD_VERZEICHNISSE = [
-  'assets/emblems',
+  'assets',
   'build',
   'docs',
   'templates',
@@ -95,12 +95,14 @@ test('kein Vereinsbegriff steht im Kern', () => {
 
 test('im Kern liegen keine Bilddateien außer den Platzhaltern', () => {
   // Gemeindewappen sind Hoheitszeichen und dürfen nicht veröffentlicht
-  // werden. Erlaubt sind nur das App-Icon, die Platzhalter und die
-  // README-Screenshots - einzeln aufgeführt statt 'docs' pauschal freizugeben,
-  // damit ein künftig dort abgelegtes viertes Bild den Test zum Anschlagen
-  // bringt, statt unbemerkt mitveröffentlicht zu werden.
+  // werden. Erlaubt sind nur das App-Icon (in beiden Größen), die Platzhalter
+  // und die README-Screenshots - einzeln aufgeführt statt 'docs' oder
+  // 'assets' pauschal freizugeben, damit ein künftig dort abgelegtes
+  // weiteres Bild den Test zum Anschlagen bringt, statt unbemerkt
+  // mitveröffentlicht zu werden.
   const erlaubt = new Set([
     path.join('build', 'icon.png'),
+    path.join('assets', 'icon.png'),
     path.join('assets', 'emblems', 'wappen-platzhalter.svg'),
     path.join('docs', 'screenshots', 'galerie.png'),
     path.join('docs', 'screenshots', 'editor.png'),
