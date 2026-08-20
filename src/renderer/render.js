@@ -72,6 +72,11 @@ function applyField(el, field, value, assets) {
       } else {
         el.textContent = v == null ? '' : v;
       }
+      // Ob ein Feld leer geblieben ist, sieht ein Stylesheet dem Text nicht an:
+      // ":empty" greift schon bei einem Leerzeichen nicht mehr. Der Marker
+      // stellt es der Optik zur Verfügung - etwa für Felder, die nur ohne Wert
+      // eine Linie zum Eintragen von Hand zeigen sollen.
+      el.toggleAttribute('data-leer', String(v == null ? '' : v).trim() === '');
   }
 }
 

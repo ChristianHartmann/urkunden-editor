@@ -155,6 +155,11 @@ nutzen `margin-top: calc(var(--mt-xyz, Basis) * var(--gap-scale, 1))`. Ein `rang
 `"cssVar":"--mt-xyz"` regelt den Einzelabstand, eines mit `"cssVar":"--gap-scale"` den
 Gesamtfaktor.
 
+**Leer gebliebene Textfelder** tragen im gerenderten Markup ein `data-leer`. Damit
+zeichnet eine Vorlage oder eine Variante ein Feld ohne Wert anders als eines mit - etwa
+als Linie zum Eintragen von Hand, die verschwindet, sobald im Editor etwas eingetragen
+wird (`.blank[data-leer] { border-bottom: 1px solid … }`).
+
 Der Editor und das Formular bauen sich automatisch aus dem Manifest - am Programmcode
 muss nichts geändert werden.
 
