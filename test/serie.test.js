@@ -18,8 +18,42 @@ const FELDER = [
   { key: 'teamName', type: 'text', bind: 'team' },
 ];
 
-test('nur Text-, Mehrzeilen- und Zahlenfelder kommen in die Muster-CSV', () => {
-  assert.deepEqual(musterSpalten(FELDER), ['handlerName', 'body', 'nummer']);
+const FELDER_MIT_GRENZEN = [
+  { key: 'handlerName', type: 'text' },
+  { key: 'paare', label: 'Teampaare', type: 'range', bind: 'count', min: 1, max: 4, step: 1 },
+];
+
+test('Text-, Mehrzeilen-, Zahlen- und Anzahl-Felder kommen in die Muster-CSV', () => {
+  assert.deepEqual(musterSpalten(FELDER), ['handlerName', 'body', 'nummer', 'paare']);
+});
+
+test('die Anzahl aus der Zeile überschreibt die der Blaupause', () => {
+  // Wie viele Teilnehmer eine Urkunde nennt, gehört zur Teilnehmerliste und
+  // nicht zur Gestaltung: in einer Serie stehen Zweier- und Einzelteams
+  // nebeneinander.
+  const bekannt = musterSpalten(FELDER);
+  assert.equal(mischeWerte({ paare: 2 }, { paare: '1' }, bekannt).paare, '1');
+  assert.equal(mischeWerte({ paare: 2 }, { paare: '' }, bekannt).paare, 2);
+});
+
+test('eine Anzahl außerhalb des erlaubten Bereichs ist auffällig', () => {
+  const { auffaellig } = pruefe({
+    fields: FELDER_MIT_GRENZEN,
+    spalten: ['handlerName', 'paare'],
+    zeilen: [
+      { handlerName: 'Muster', paare: '1' },
+      { handlerName: 'Muster', paare: 'zwei' },
+      { handlerName: 'Muster', paare: '9' },
+      { handlerName: 'Muster', paare: '' },
+    ],
+    bekannteSchluessel: musterSpalten(FELDER_MIT_GRENZEN),
+  });
+  assert.deepEqual(
+    auffaellig.map((a) => a.zeile),
+    [3, 4]
+  );
+  assert.match(auffaellig[0].grund, /Teampaare/);
+  assert.match(auffaellig[0].grund, /1 bis 4/);
 });
 
 test('die Zeile überschreibt die Blaupause', () => {

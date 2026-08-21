@@ -201,7 +201,7 @@ function registerIpc(boot) {
     // Spalte, die zufällig wie ein Gestaltungsfeld heißt (z. B. "emblem"),
     // dieses Feld still überschreiben, statt als unbekannt gemeldet zu werden.
     const musterbare = serie.musterSpalten(fields);
-    const bericht = serie.pruefe({ spalten, zeilen, bekannteSchluessel: musterbare, basis });
+    const bericht = serie.pruefe({ fields, spalten, zeilen, bekannteSchluessel: musterbare });
     const wertesaetze = zeilen.map((z) => serie.mischeWerte(basis, z, musterbare));
     return { musterbare, ...bericht, wertesaetze };
   });

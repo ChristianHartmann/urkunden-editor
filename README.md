@@ -59,6 +59,12 @@ eine Zelle leer bleibt: dann gilt, was du in der Urkunde eingestellt hast. Soll
 ein Feld auf allen Urkunden leer sein (etwa die Punktzahl zum Eintragen von
 Hand), lass es schon in der Vorlage leer.
 
+Nennt eine Vorlage mehrere Teilnehmer (beim Pokalkampf ein bis vier
+Mensch-Hund-Paare), steht auch dafür eine Spalte in der Muster-CSV: je Zeile
+die Anzahl. So stehen Einzel- und Zweierteams in derselben Serie, ohne dass auf
+der Urkunde des Einzelteams eine leere zweite Namenszeile bleibt. Steht dort
+keine oder keine sinnvolle Zahl, meldet die App die Zeile, bevor sie druckt.
+
 ## Vorlagen
 
 Die Standard-Variante bringt drei Vorlagen mit, die sich eine Hausoptik teilen

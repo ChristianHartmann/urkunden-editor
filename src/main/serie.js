@@ -8,9 +8,16 @@
 // Auswahlfelder gehören zur Gestaltung der Vorlage, nicht zur Teilnehmerliste.
 const SERIEN_TYPEN = new Set(['text', 'textarea', 'number']);
 
+// Ausnahme unter den Reglern: ein Anzahl-Feld sagt, wie viele Namen die
+// Urkunde nennt. Das ist Teilnehmerangabe und keine Gestaltung - eine Serie
+// enthält Einzel- und Zweierteams nebeneinander.
+function istAnzahl(field) {
+  return field.bind === 'count';
+}
+
 function musterSpalten(fields) {
   return fields
-    .filter((f) => SERIEN_TYPEN.has(f.type) && !f.cssVar && !f.styleProp && !f.bind)
+    .filter((f) => istAnzahl(f) || (SERIEN_TYPEN.has(f.type) && !f.cssVar && !f.styleProp && !f.bind))
     .map((f) => f.key);
 }
 
@@ -29,14 +36,35 @@ function mischeWerte(basis, zeile, bekannteSchluessel) {
   return werte;
 }
 
-function pruefe({ spalten, zeilen, bekannteSchluessel, basis }) {
+// Eine Anzahl, die keine ganze Zahl im erlaubten Bereich ist, druckt still das
+// falsche Blatt: aus "zwei" wird beim Rendern eine 0, die Urkunde nennt dann
+// niemanden. Darum vor dem Erzeugen melden statt hinterher zählen.
+function anzahlBeanstandung(field, zelle) {
+  const roh = String(zelle ?? '').trim();
+  if (roh === '') return null; // leere Zelle: es gilt die Blaupause
+  const min = field.min ?? 1;
+  const max = field.max ?? Infinity;
+  const zahl = Number(roh);
+  if (Number.isInteger(zahl) && zahl >= min && zahl <= max) return null;
+  const bereich = Number.isFinite(max) ? `${min} bis ${max}` : `ab ${min}`;
+  return `"${field.label || field.key}": "${roh}" ist keine ganze Zahl ${bereich}`;
+}
+
+function pruefe({ fields, spalten, zeilen, bekannteSchluessel }) {
   const bekannt = new Set(bekannteSchluessel);
   const unbekannteSpalten = spalten.filter((s) => !bekannt.has(s));
+  const anzahlFelder = (fields || []).filter((f) => istAnzahl(f) && bekannt.has(f.key));
   const auffaellig = [];
 
   zeilen.forEach((zeile, index) => {
     // Zeilennummer aus Sicht des Anwenders: die Kopfzeile ist Zeile 1.
     const nummer = index + 2;
+
+    for (const feld of anzahlFelder) {
+      const grund = anzahlBeanstandung(feld, zeile[feld.key]);
+      if (grund) auffaellig.push({ zeile: nummer, grund });
+    }
+
     // Seit eine leere Zelle den Wert der Blaupause behält, ist nicht mehr die
     // einzelne leere Zelle auffällig, sondern die Zeile, die überhaupt nichts
     // beiträgt: sie ergäbe eine zweite Urkunde mit den Werten der Blaupause.
