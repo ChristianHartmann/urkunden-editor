@@ -147,6 +147,11 @@ docs/       Screenshots für dieses README
      Container, dessen Kinder `data-count="1"`, `"2"`, … tragen; sichtbar
      bleiben so viele, wie eingestellt sind (etwa für ein Teilnehmerpaar,
      das je nach Urkunde ein- oder zweizeilig steht).
+   - `select` mit `"bind":"switch"` - Entweder-oder: das `data-field`-Element
+     ist ein Container, dessen Kinder `data-case="…"` tragen; sichtbar ist das
+     Kind, dessen `data-case` zum gewählten Wert passt (etwa eine Prüfung, die
+     mit einer Punktzahl oder nur mit „bestanden" endet). Die Kinder dürfen
+     eigene `data-field`-Elemente enthalten.
 4. Optional Felder in einen **ausklappbaren Block** legen: `"group":"<id>"` am Feld
    und den Block unter `"groups": { "<id>": { "label":"…", "collapsed":true } }`
    beschreiben (siehe die „Abstände"-Gruppe der vorhandenen Vorlagen).

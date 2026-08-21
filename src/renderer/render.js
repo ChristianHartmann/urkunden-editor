@@ -66,6 +66,20 @@ function applyField(el, field, value, assets) {
       }
       return;
     }
+    case 'switch': {
+      // Zeigt von mehreren beschrifteten Kindern eines Containers genau das,
+      // dessen data-case zum Wert passt. Für Vorlagen, die je nach Anlass
+      // anders enden - etwa eine Prüfung mit Punktzahl oder eine, die nur
+      // bestanden wird. Ein Auswahlfeld statt zweier Häkchen, damit es den
+      // Zustand "beides an" gar nicht erst gibt.
+      for (const kind of el.querySelectorAll('[data-case]')) {
+        if (kind.dataset.origDisplay === undefined) {
+          kind.dataset.origDisplay = kind.style.display || '';
+        }
+        kind.style.display = kind.dataset.case === String(v) ? kind.dataset.origDisplay : 'none';
+      }
+      return;
+    }
     default:
       if (field.type === 'textarea') {
         el.innerHTML = escapeHtml(v == null ? '' : v).replace(/\n/g, '<br>');
